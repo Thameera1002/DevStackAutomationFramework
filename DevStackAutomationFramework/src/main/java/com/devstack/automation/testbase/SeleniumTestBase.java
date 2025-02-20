@@ -1,5 +1,6 @@
 package com.devstack.automation.testbase;
 
+import com.devstack.automation.utils.ThreadLocalWebDriverManager;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -15,7 +16,7 @@ public class SeleniumTestBase {
     protected static WebDriver driver;
 
     public SeleniumTestBase(WebDriver driver) {
-        this.driver = driver;
+        this.driver = ThreadLocalWebDriverManager.getDriver();
     }
 
 
