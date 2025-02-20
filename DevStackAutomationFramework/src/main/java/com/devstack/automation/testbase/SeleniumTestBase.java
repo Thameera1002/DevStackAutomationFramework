@@ -1,5 +1,6 @@
 package com.devstack.automation.testbase;
 
+import com.devstack.automation.constants.SeleniumErrorMessages;
 import com.devstack.automation.utils.ThreadLocalWebDriverManager;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -20,10 +21,15 @@ public class SeleniumTestBase {
     }
 
 
-    public void click(By locator) {
-        WebElement element = waitForVisibilityOfElement(driver.findElement(locator));
-        moveToElement(element);
-        element.click();
+    public void click(By locator) throws Exception {
+        try{
+            WebElement element = waitForVisibilityOfElement(driver.findElement(locator));
+            moveToElement(element);
+            element.click();
+        }catch (Exception e){
+            throw new Exception(SeleniumErrorMessages.CLICK.getMessage(),e);
+        }
+
     }
 
     public void type(By locator,String inputText) {
