@@ -6,9 +6,10 @@ import org.openqa.selenium.WebDriver;
 public class ThreadLocalWebDriverManager {
     private static ThreadLocal<WebDriver> threadLocalDriver = new ThreadLocal<>();
 
+    private static PropertyHandler propertyHandler = new PropertyHandler();
 
     public static WebDriver createDriver() {
-        String browser = "chrome";
+        String browser = propertyHandler.getProperty("browser");
         WebDriver driver = null;
 
         if (browser.equalsIgnoreCase("chrome")) {
