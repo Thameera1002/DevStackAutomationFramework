@@ -21,18 +21,13 @@ public class SeleniumTestBase {
     }
 
 
-    public void click(By locator) throws Exception {
-        try{
-            WebElement element = waitForVisibilityOfElement(driver.findElement(locator));
-            moveToElement(element);
-            element.click();
-        }catch (Exception e){
-            throw new Exception(SeleniumErrorMessages.CLICK.getMessage(),e);
-        }
-
+    public void click(By locator) {
+        WebElement element = waitForVisibilityOfElement(driver.findElement(locator));
+        moveToElement(element);
+        element.click();
     }
 
-    public void type(By locator,String inputText) {
+    public void type(By locator, String inputText) {
         WebElement element = waitForVisibilityOfElement(driver.findElement(locator));
         moveToElement(element);
         element.click();

@@ -23,4 +23,10 @@ public class LoginPage extends SeleniumTestBase {
     public void fillUserName(String userName) {
         type(tf_userName, userName);
     }
+    public void fillPassword(String password) {
+        type(tf_password, password);
+    }
+    public void clickLogin() {
+        click(btn_login);
+    }
 }
