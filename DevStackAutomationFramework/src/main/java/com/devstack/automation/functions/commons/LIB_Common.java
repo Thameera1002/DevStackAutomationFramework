@@ -2,6 +2,7 @@ package com.devstack.automation.functions.commons;
 
 import com.devstack.automation.functions.FunctionBase;
 import com.devstack.automation.pages.commons.LoginPage;
+import com.devstack.automation.reporter.ExtentReportManager;
 import org.openqa.selenium.WebDriver;
 
 public class LIB_Common extends FunctionBase {
@@ -13,9 +14,11 @@ public class LIB_Common extends FunctionBase {
     }
 
     public void bc_login(String username, String password) {
+        ExtentReportManager.writeToReport("Start of bc_login");
         loginPage.fillUserName(username);
         loginPage.fillPassword(password);
         loginPage.clickLogin();
+        ExtentReportManager.writeToReport("End of bc_login");
     }
 
 

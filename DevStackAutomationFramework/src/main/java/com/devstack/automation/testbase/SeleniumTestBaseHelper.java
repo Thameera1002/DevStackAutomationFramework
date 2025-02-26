@@ -36,6 +36,8 @@ public class SeleniumTestBaseHelper {
             ExtentReportManager.logFail(result.getName()+"\n"+result.getThrowable().getMessage());
         }else if(result.getStatus()==ITestResult.SKIP){
             ExtentReportManager.logSkip(result.getName()+"\n"+result.getThrowable().getMessage());
+        }else {
+            ExtentReportManager.logPass(result.getName()+" passed.");
         }
         ThreadLocalWebDriverManager.removeDriver();
     }

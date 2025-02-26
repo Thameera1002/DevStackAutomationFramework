@@ -45,6 +45,12 @@ public class ExtentReportManager {
         }
     }
 
+    public static void writeToReport(String message) {
+        if(Objects.nonNull(test)) {
+            test.log(Status.INFO, message);
+        }
+    }
+
     public static void logFailWithScreenShot(String message,String base64Screenshot) {
         if(Objects.nonNull(test)) {
             test.fail(message, MediaEntityBuilder.createScreenCaptureFromBase64String(base64Screenshot).build());

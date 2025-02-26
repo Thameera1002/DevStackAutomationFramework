@@ -1,6 +1,7 @@
 package com.devstack.automation.testbase;
 
 import com.devstack.automation.constants.SeleniumErrorMessages;
+import com.devstack.automation.reporter.ExtentReportManager;
 import com.devstack.automation.utils.ThreadLocalWebDriverManager;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -22,17 +23,29 @@ public class SeleniumTestBase {
 
 
     public void click(By locator) {
-        WebElement element = waitForVisibilityOfElement(driver.findElement(locator));
-        moveToElement(element);
-        element.click();
+        try {
+            WebElement element = waitForVisibilityOfElement(driver.findElement(locator));
+            moveToElement(element);
+            element.click();
+            ExtentReportManager.logPass("Clicked in locator :" + locator);
+        }catch (Exception e) {
+            ExtentReportManager.logFail("No such element in locator :" + locator+" /n"+e.getMessage());
+        }
+
     }
 
     public void type(By locator, String inputText) {
-        WebElement element = waitForVisibilityOfElement(driver.findElement(locator));
-        moveToElement(element);
-        element.click();
-        element.clear();
-        element.sendKeys(inputText);
+        try{
+            WebElement element = waitForVisibilityOfElement(driver.findElement(locator));
+            moveToElement(element);
+            element.click();
+            element.clear();
+            element.sendKeys(inputText);
+            ExtentReportManager.logPass("Typed ["+inputText+"] in locator :" + locator);
+        }catch (Exception e) {
+            ExtentReportManager.logFail("No such element in locator :" + locator+" /n"+e.getMessage());
+        }
+
     }
 
     public static WebElement waitForVisibilityOfElement(WebElement locator) {
