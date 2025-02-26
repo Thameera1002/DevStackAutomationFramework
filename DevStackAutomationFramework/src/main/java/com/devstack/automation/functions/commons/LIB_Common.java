@@ -14,6 +14,8 @@ public class LIB_Common extends FunctionBase {
 
     public void bc_login(String username, String password) {
         loginPage.fillUserName(username);
+        loginPage.fillPassword(password);
+        loginPage.clickLogin();
     }
 
 
