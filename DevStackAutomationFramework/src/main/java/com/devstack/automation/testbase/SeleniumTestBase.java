@@ -67,6 +67,7 @@ public class SeleniumTestBase {
         try{
             WebElement element = waitForVisibilityOfElement(driver.findElement(locator));
             moveToJsElement(element);
+            executor.executeScript("arguments[0].value='';", element);
             executor.executeScript("arguments[0].value='"+inputText+"';", element);
             ExtentReportManager.logPass("JS Typed ["+inputText+"] in locator :" + locator);
         }catch (Exception e) {

@@ -21,12 +21,12 @@ public class LoginPage extends SeleniumTestBase {
     By btn_login = By.xpath("//button[text()='Login']");
 
     public void fillUserName(String userName) {
-        type(tf_userName, userName);
+        jsType(tf_userName, userName);
     }
     public void fillPassword(String password) {
-        type(tf_password, password);
+        jsType(tf_password, password);
     }
     public void clickLogin() {
-        click(btn_login);
+        jsClick(btn_login);
     }
 }
