@@ -97,4 +97,9 @@ public class SeleniumTestBase {
     public void moveToJsElement(WebElement locator) {
         executor.executeScript("arguments[0].scrollIntoView();", locator);
     }
+
+    public boolean isElementPresent(By locator) {
+        WebElement element = waitForVisibilityOfElement(driver.findElement(locator));
+        return element.isDisplayed();
+    }
 }

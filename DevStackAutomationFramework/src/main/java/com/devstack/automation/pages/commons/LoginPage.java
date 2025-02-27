@@ -19,14 +19,19 @@ public class LoginPage extends SeleniumTestBase {
     By tf_userName = By.id("username");
     By tf_password = By.id("password");
     By btn_login = By.xpath("//button[text()='Login']");
+    By txt_chooseLocation = By.id("chooseLocation");
 
     public void fillUserName(String userName) {
-        jsType(tf_userName, userName);
+        type(tf_userName, userName);
     }
     public void fillPassword(String password) {
-        jsType(tf_password, password);
+        type(tf_password, password);
     }
     public void clickLogin() {
-        jsClick(btn_login);
+        click(btn_login);
+    }
+
+    public boolean verifyChooseLocation() {
+        return isElementPresent(txt_chooseLocation);
     }
 }
