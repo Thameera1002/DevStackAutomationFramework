@@ -4,6 +4,7 @@ import com.devstack.automation.constants.SeleniumErrorMessages;
 import com.devstack.automation.reporter.ExtentReportManager;
 import com.devstack.automation.utils.ThreadLocalWebDriverManager;
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
@@ -17,8 +18,11 @@ public class SeleniumTestBase {
 
     protected static WebDriver driver;
 
+    protected JavascriptExecutor executor;
+
     public SeleniumTestBase(WebDriver driver) {
         this.driver = ThreadLocalWebDriverManager.getDriver();
+        this.executor = (JavascriptExecutor) this.driver;
     }
 
 
@@ -32,6 +36,17 @@ public class SeleniumTestBase {
             ExtentReportManager.logFail("No such element in locator :" + locator+" /n"+e.getMessage());
         }
 
+    }
+
+    public void jsClick(By locator) {
+        try{
+            WebElement element = waitForVisibilityOfElement(driver.findElement(locator));
+            moveToJsElement(element);
+            executor.executeScript("arguments[0].click();", element);
+            ExtentReportManager.logPass("JS Clicked in locator :" + locator);
+        }catch (Exception e) {
+            ExtentReportManager.logFail("No such element in locator :" + locator);
+        }
     }
 
     public void type(By locator, String inputText) {
@@ -65,5 +80,9 @@ public class SeleniumTestBase {
 
     public static void moveToElement(WebElement locator) {
         new Actions(driver).moveToElement(locator).perform();
+    }
+
+    public void moveToJsElement(WebElement locator) {
+        executor.executeScript("arguments[0].scrollIntoView();", locator);
     }
 }
