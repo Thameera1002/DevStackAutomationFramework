@@ -45,7 +45,7 @@ public class SeleniumTestBase {
             executor.executeScript("arguments[0].click();", element);
             ExtentReportManager.logPass("JS Clicked in locator :" + locator);
         }catch (Exception e) {
-            ExtentReportManager.logFail("No such element in locator :" + locator);
+            ExtentReportManager.logFail("No such element in locator :" + locator+" /n"+e.getMessage());
         }
     }
 
@@ -61,6 +61,17 @@ public class SeleniumTestBase {
             ExtentReportManager.logFail("No such element in locator :" + locator+" /n"+e.getMessage());
         }
 
+    }
+
+    public void jsType(By locator, String inputText) {
+        try{
+            WebElement element = waitForVisibilityOfElement(driver.findElement(locator));
+            moveToJsElement(element);
+            executor.executeScript("arguments[0].value='"+inputText+"';", element);
+            ExtentReportManager.logPass("JS Typed ["+inputText+"] in locator :" + locator);
+        }catch (Exception e) {
+            ExtentReportManager.logFail("No such element in locator :" + locator+" /n"+e.getMessage());
+        }
     }
 
     public static WebElement waitForVisibilityOfElement(WebElement locator) {
