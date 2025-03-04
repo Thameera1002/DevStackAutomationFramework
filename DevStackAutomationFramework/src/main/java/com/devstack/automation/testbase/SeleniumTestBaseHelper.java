@@ -15,10 +15,10 @@ import java.lang.reflect.Method;
 public class SeleniumTestBaseHelper {
     protected WebDriver driver;
 
-//    @BeforeSuite(alwaysRun = true)
-//    public void beforeSuite(){
-//        ExtentReportManager.initReport();
-//    }
+    @BeforeSuite(alwaysRun = true)
+    public void beforeSuite(){
+        ExtentReportManager.initReport();
+    }
 
     @BeforeMethod(alwaysRun = true)
     public void beforeMethod(Method method){
@@ -40,10 +40,10 @@ public class SeleniumTestBaseHelper {
         ThreadLocalWebDriverManager.removeDriver();
     }
 
-//    @AfterSuite(alwaysRun = true)
-//    public void afterSuite(){
-//        ExtentReportManager.flushReport();
-//    }
+    @AfterSuite(alwaysRun = true)
+    public void afterSuite(){
+        ExtentReportManager.flushReport();
+    }
 
 
 }
