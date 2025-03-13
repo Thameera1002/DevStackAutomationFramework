@@ -14,5 +14,7 @@ public class LoginTest extends BaseTest {
         LIB_Common common = new LIB_Common(driver);
 //        common.bc_login(PropertyHandler.getProperty("username"), PropertyHandler.getProperty("password"));
         common.bc_login(loginTestData.getUserName(), loginTestData.getPassword());
+
+
     }
 }
